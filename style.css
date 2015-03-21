@@ -185,6 +185,27 @@ input[type="text"]:focus+.bg>.suggestion.open {
     margin-bottom:-2px;
 }
 
+#scale .item a {
+    text-decoration:none;
+}
+
+#scale .item a + .bg {
+    width:0;
+    height:28px;
+    margin-top:-48px;
+    margin-bottom:20px;
+    border-bottom:2px solid #FFF;
+    transition: all 0.3s ease;
+}
+
+#scale .item:last-child a + .bg {
+    margin-top:-38px;
+}
+
+#scale .item a:hover + .bg {
+    width:100%;
+}
+
 #error {
     background-color: #96122F;
 }
@@ -209,8 +230,6 @@ input[type="text"]:focus+.bg>.suggestion.open {
 @media all and (max-width: 600px) {
     h1 {
         font-size: 40px;
-    }
-    #inputs {
     }
     input[type="text"] {
         box-sizing: border-box;

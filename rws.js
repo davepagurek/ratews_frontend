@@ -106,8 +106,12 @@ document.getElementById("go").addEventListener("click", function() {
                     var scale = document.getElementById("scale");
                     scale.innerHTML = "";
                     for (var i=0; i<result.scale.length; i++) {
-                        scale.innerHTML += "<div class='item'><h3>" + (i+1) + "</h3>" + result.scale[i] + "</div>";
-                    };
+                        var item = "<div class='item'><h3>" + (i+1) + "</h3>"
+                        item += "<a href='http://en.wikipedia.org/wiki/" + encodeURIComponent(result.scale[i]) + "'>" + result.scale[i] + "</a>"
+                        item += "<div class='bg'></div>";
+                        item += "</div>";
+                        scale.innerHTML += item;
+                    }
                     hide(document.getElementById("loading"));
                     show(document.getElementById("results"));
                 } else {
