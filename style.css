@@ -10,6 +10,7 @@ body {
 
 a, a:visited, a:active {
     color:#FFF;
+    transition: all 0.3s ease;
 }
 a:hover {
     color:#FFC4FE;
@@ -139,6 +140,11 @@ input[type="text"]+.bg {
     margin-bottom:-12px;
 }
 
+input[type="text"]:hover+.bg {
+    border-top: 40px solid transparent;
+    border-bottom: 5px solid #FFF;
+}
+
 input[type="text"]:focus {
     color: #4A148C;
 }
@@ -208,6 +214,10 @@ input[type="text"]:focus+.bg>.suggestion.open {
 
 #error {
     background-color: #96122F;
+}
+
+.heart {
+    color: #EBA0E6;
 }
 
 
