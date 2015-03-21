@@ -65,8 +65,8 @@ Array.prototype.forEach.call(document.querySelectorAll("input[type='text']"), fu
             dataType: "jsonp",
             headers: { 'Api-User-Agent': 'Example/1.0' },
             success: function(result) {
+                suggestion.innerHTML = result["1"];
                 if (element.value.trim() != result["1"]) {
-                    suggestion.innerHTML = result["1"];
                     suggestion.classList.add("open");
                 } else {
                     suggestion.classList.remove("open");
@@ -91,3 +91,24 @@ Array.prototype.forEach.call(document.querySelectorAll(".suggestion"), function(
         element.classList.remove("open");
     });
 });
+
+
+document.getElementById("go").addEventListener("click", function() {
+    hide(document.getElementById("header"));
+    $.ajax({
+        url: "data.txt",
+        type: "GET",
+        dataType: "text",
+        success: function(result) {
+            var scale = document.getElementById("scale");
+            var elements = result.split(/[\r\n]+/);
+            scale.innerHTML = "";
+            for (var i=0; i<elements.length; i++) {
+                if (elements[i].trim() != "") {
+                    scale.innerHTML += "<div class='item'><h3>" + (i+1) + "</h3>" + elements[i] + "</div>";
+                }
+            };
+            show(document.getElementById("results"));
+        }
+    });
+})
