@@ -95,20 +95,40 @@ Array.prototype.forEach.call(document.querySelectorAll(".suggestion"), function(
 
 document.getElementById("go").addEventListener("click", function() {
     hide(document.getElementById("header"));
-    $.ajax({
-        url: "data.txt",
-        type: "GET",
-        dataType: "text",
-        success: function(result) {
-            var scale = document.getElementById("scale");
-            var elements = result.split(/[\r\n]+/);
-            scale.innerHTML = "";
-            for (var i=0; i<elements.length; i++) {
-                if (elements[i].trim() != "") {
-                    scale.innerHTML += "<div class='item'><h3>" + (i+1) + "</h3>" + elements[i] + "</div>";
+    show(document.getElementById("loading"));
+    setTimeout(function() {
+        $.ajax({
+            url: "data.txt",
+            type: "GET",
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "ok") {
+                    var scale = document.getElementById("scale");
+                    scale.innerHTML = "";
+                    for (var i=0; i<result.scale.length; i++) {
+                        scale.innerHTML += "<div class='item'><h3>" + (i+1) + "</h3>" + result.scale[i] + "</div>";
+                    };
+                    hide(document.getElementById("loading"));
+                    show(document.getElementById("results"));
+                } else {
+                    hide(document.getElementById("loading"));
+                    show(document.getElementById("error"));
                 }
-            };
-            show(document.getElementById("results"));
-        }
-    });
-})
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                hide(document.getElementById("loading"));
+                show(document.getElementById("error"));
+            }
+        });
+    }, 500);
+});
+
+document.getElementById("again").addEventListener("click", function() {
+    hide(document.getElementById("results"));
+    show(document.getElementById("header"));
+});
+
+document.getElementById("close_error").addEventListener("click", function() {
+    hide(document.getElementById("error"));
+    show(document.getElementById("header"));
+});

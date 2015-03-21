@@ -8,6 +8,13 @@ body {
     background-color:#2A006C;
 }
 
+a, a:visited, a:active {
+    color:#FFF;
+}
+a:hover {
+    color:#FFC4FE;
+}
+
 .accented {
     font-weight:normal;
 }
@@ -64,12 +71,16 @@ h1 {
 
 .inputs {
     font-size:25px;
-    line-height:45px;
+    line-height:60px;
     font-style:italic;
 }
 
 input:focus {
     outline:0;
+}
+
+#end+.bg {
+    margin-right:20px;
 }
 
 input[type="button"] {
@@ -79,7 +90,7 @@ input[type="button"] {
     color:#4A148C;
     background-color:#FFF;
     border-radius:6px;
-    margin: 0 5px 0 20px;
+    margin: 0;
     transition:all 0.2s ease;
 }
 
@@ -96,7 +107,7 @@ input[type="text"] {
     color:#FFF;
     border-bottom: 2px solid #FFF;
     background-color:transparent;
-    margin: 0 5px;
+    margin: 0;
     transition:all 0.4s ease;
     position:relative;
     z-index:2;
@@ -124,7 +135,7 @@ input[type="text"]+.bg {
     z-index:1;
     transition: all 0.2s ease;
     width:230px;
-    margin-left:-235px;
+    margin-left:-230px;
     margin-bottom:-12px;
 }
 
@@ -148,6 +159,7 @@ input[type="text"]:focus+.bg>.suggestion.open {
     margin-left:21px;
     border-left: 2px dotted #FFF;
     line-height:38px;
+    margin-bottom:40px;
 }
 
 #scale .item h3 {
@@ -171,4 +183,46 @@ input[type="text"]:focus+.bg>.suggestion.open {
 }
 #scale .item:last-child {
     margin-bottom:-2px;
+}
+
+#error {
+    background-color: #96122F;
+}
+
+
+@media all and (max-width: 1200px) {
+    .wrapper {
+        padding:20px;
+    }
+    h1 {
+        font-size: 60px;
+    }
+}
+
+@media all and (max-width: 920px) {
+    #clear {
+        display:block;
+        clear:both;
+    }
+}
+
+@media all and (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+    }
+    #inputs {
+    }
+    input[type="text"] {
+        box-sizing: border-box;
+        width:100%;
+        margin-bottom:50px;
+    }
+    input[type="text"]+.bg {
+        box-sizing: border-box;
+        width:100%;
+        margin-left:-100%;
+    }
+    #end+.bg {
+        margin-right:0;
+    }
 }
